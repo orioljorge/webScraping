@@ -107,28 +107,6 @@ class Client(object):
         imatge = imatge.find('img')['src']
         imatge = "https:" + imatge
         return imatge
-    def login_page(self):
-        html = self.get_web("https://www.packtpub.com/packt/offers/free-learning?from=block")
-        soup = bs4.BeautifulSoup(html,"lxml")
-        buil_id = soup.find_all("form")
-        buil_id = buil_id[1]
-        buil_id = buil_id.find_all("input")
-        buil_id = buil_id[3]['value']
-        session = requests.Session()
-        dades= {'email':'ori.jorge@gmail.com','password':'AA11dd22', 'op': 'Login', 'form_build_id' : buil_id, 'form_id' : 'packt_user_login_form'}
-        url = "https://www.packtpub.com/packt/offers/free-learning?from=block"
-        with requests.Session() as s:
-            p = s.post(url, data=dades)
-            print p.text
-        print(dades)
-
-        #test = session.post(url, data=dades)
-        #print(test.status_code, test.reason)
-
-        html = self.get_web("https://www.packtpub.com/account/my-ebooks")
-        soup = bs4.BeautifulSoup(html,"lxml")
-        link = soup.find("div", "download-container")
-        #print(soup)
     def send_libro(self,chat_id):
         html = self.get_web("https://www.packtpub.com/packt/offers/free-learning?from=block")
         soup = bs4.BeautifulSoup(html,"lxml")
